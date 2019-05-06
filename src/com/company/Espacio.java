@@ -3,23 +3,26 @@ package com.company;
 import javax.swing.*;
 import java.awt.*;
 
-public class Espacio extends JButton {//Abstraccion
+public abstract class Espacio extends JButton {//Abstraccion
     int tipoV;
     int hp=5;
     private JButton espacio;
+    protected Vehiculo movil;//Polimorfismo
     int ancho = 32;
     int alto = -1;
-    protected static final String TanqueSRC  = "out/production/PracticaFInal/com/company/iconos/tanque.png";
-    ImageIcon tanque = new ImageIcon(TanqueSRC);
+    protected static final String Tierra  = "out/production/PracticaFInal/com/company/iconos/tierra.jpg";
 
-    protected Vehiculo movil;//Polimorfismo
+
+
     /**
      * Constructor
      */
     Espacio(){
-        JButton espacio = new JButton("kpdo");
-        espacio.setText("Hola");
-        espacio.setIcon(new ImageIcon(tanque.getImage().getScaledInstance(ancho, alto, Image.SCALE_DEFAULT)));
+       // this.setText("holi");
+
+        //JButton espacio = new JButton("kpdo");
+       // espacio.setText("Hola");
+
     }
 
     /**
@@ -44,14 +47,15 @@ public class Espacio extends JButton {//Abstraccion
     public void inicializarTanque(String nombre){
         movil = new Tanque();
         movil.setNickname(nombre);
-        tipoV=4;
-        movil.getVehiculo();
+        ImageIcon vehiculo = new ImageIcon(movil.getVehiculo());
+        this.setIcon(new ImageIcon(vehiculo.getImage().getScaledInstance(ancho,alto, Image.SCALE_DEFAULT)));
 
 
     }
     public void inicializarTanque(){
         movil = new Tanque();
-        movil.getVehiculo();
+        ImageIcon vehiculo = new ImageIcon(movil.getVehiculo());
+        this.setIcon(new ImageIcon(vehiculo.getImage().getScaledInstance(ancho,alto, Image.SCALE_DEFAULT)));
 
     }
     /**
@@ -61,8 +65,8 @@ public class Espacio extends JButton {//Abstraccion
     public void inicializarAvion(String nombre){
         movil = new Avion();
         movil.setNickname(nombre);
-        tipoV=5;
-        movil.getVehiculo();
+        ImageIcon vehiculo = new ImageIcon(movil.getVehiculo());
+        this.setIcon(new ImageIcon(vehiculo.getImage().getScaledInstance(ancho,alto, Image.SCALE_DEFAULT)));
     }
     public void inicializarAvion(){
         movil = new Avion();
@@ -119,6 +123,23 @@ public class Espacio extends JButton {//Abstraccion
      */
 
 
+
+    /**
+     * Retorna tipo
+     * @return
+     */
+    abstract int getTipo();
+    abstract int getTipoV();
+    /**
+     * Establece el tipo
+     * @param tipo
+     */
+    abstract void setTipo(int tipo);
+    /**
+     * Retorna color y cuadro
+     * @return
+     */
+    abstract String getCuadroColor();
 
 
 

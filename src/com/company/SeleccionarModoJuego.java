@@ -34,7 +34,7 @@ public class SeleccionarModoJuego extends JFrame {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         jvspc();
-                        a.Juego(modojuego1);
+                       a.Juego(modojuego1);
                         ventanaModo.setVisible(false);
                         ventanaModo.dispose();
 
@@ -61,6 +61,7 @@ public class SeleccionarModoJuego extends JFrame {
     public void jvspc(){
         modojuego1 = true;
     }
+
 
     public boolean getModojuego1() {
         return modojuego1;

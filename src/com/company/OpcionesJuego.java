@@ -14,7 +14,6 @@ public class OpcionesJuego extends JFrame {
     private JButton cargar;
     public void OpcionesJuego(){
         opcion.setSize(400,150);
-        opcion.setDefaultCloseOperation(EXIT_ON_CLOSE);
         modo = new JPanel();
         nuevo = new JButton("Nueva Partida");
         cargar = new JButton("Cargar Partida");
@@ -32,7 +31,6 @@ public class OpcionesJuego extends JFrame {
                 new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        System.out.println("Sho");
                         SeleccionarModoJuego b = new SeleccionarModoJuego();
                         b.SeleccionarModoJuego();
                         opcion.setVisible(false);

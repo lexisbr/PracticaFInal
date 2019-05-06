@@ -19,15 +19,16 @@ public class SeleccionarVehiculos1 extends JFrame {
     private JTextField nombre2;
     private JTextField nombre3;
     private JButton continuarButton;
-    private String[] v= new String[3];
-    private String[] nv= new String[3];
+    private  String[] v= new String[3];
+    private  String[] nv= new String[3];
+    Juego a=new Juego();
 
     public void SeleccionarVehiculos1() {
         this.setSize(600,250);
         this.add(panel1);
         this.add(panel2);
         this.getContentPane().add(BorderLayout.NORTH,panel1);
-        this.setVisible(true);
+
         continuarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -44,23 +45,28 @@ public class SeleccionarVehiculos1 extends JFrame {
                 if(tanque2.isSelected()){
                     JOptionPane.showMessageDialog(null,"Vehiculo 2: Tanque Nombre: "+nombre2.getText());
                     v[1]="Tanque";
-                    v[1]=nombre2.getText();
+                    nv[1]=nombre2.getText();
                 }else if(avion2.isSelected()){
                     JOptionPane.showMessageDialog(null,"Vehiculo 2: Avion Nombre: "+nombre2.getText());
                     v[1]="Avion";
-                    v[1]=nombre2.getText();
+                    nv[1]=nombre2.getText();
                 }
                 if(tanque3.isSelected()){
                     JOptionPane.showMessageDialog(null,"Vehiculo 3: Tanque Nombre: "+nombre3.getText());
                     v[2]="Tanque";
-                    v[2]=nombre3.getText();
+                    nv[2]=nombre3.getText();
                 }else if(avion3.isSelected()){
                     JOptionPane.showMessageDialog(null,"Vehiculo 3: Avion Nombre: "+nombre3.getText());
                     v[2]="Avion";
-                    v[2]=nombre3.getText();
+                    nv[2]=nombre3.getText();
+                }
+                for(int i = 0; i<3;i++) {
+                    System.out.println(v[i]+" - "+ nv[i]);
+                    a.generarVehiculos(v[i], nv[i]);
                 }
             }
         });
+        this.setVisible(true);
 
     }
 
@@ -69,6 +75,11 @@ public class SeleccionarVehiculos1 extends JFrame {
     }
     public String getNv(int i){
         return nv[i];
+    }
+    public void returnVehiculo(){
+        for(int i=0 ; i<3;i++) {
+            System.out.println(getV(i) + " " + getNv(i));
+        }
     }
 
 
