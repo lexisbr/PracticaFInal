@@ -34,9 +34,10 @@ public class SeleccionarModoJuego extends JFrame {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         jvspc();
-                        ventanaModo.setVisible(true);
-                        ventanaModo.dispose();
                         a.Juego(modojuego1);
+                        ventanaModo.setVisible(false);
+                        ventanaModo.dispose();
+
 
                     }
                 }

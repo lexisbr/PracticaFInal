@@ -32,9 +32,10 @@ public class OpcionesJuego extends JFrame {
                 new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
+                        System.out.println("Sho");
                         SeleccionarModoJuego b = new SeleccionarModoJuego();
                         b.SeleccionarModoJuego();
-                        opcion.setVisible(true);
+                        opcion.setVisible(false);
                         opcion.dispose();
 
                     }

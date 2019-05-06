@@ -1,19 +1,25 @@
 package com.company;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class Espacio extends JButton {//Abstraccion
     int tipoV;
     int hp=5;
-
-
+    private JButton espacio;
+    int ancho = 32;
+    int alto = -1;
+    protected static final String TanqueSRC  = "out/production/PracticaFInal/com/company/iconos/tanque.png";
+    ImageIcon tanque = new ImageIcon(TanqueSRC);
 
     protected Vehiculo movil;//Polimorfismo
     /**
      * Constructor
      */
     Espacio(){
-        movil = null;
+        JButton espacio = new JButton("kpdo");
+        espacio.setText("Hola");
+        espacio.setIcon(new ImageIcon(tanque.getImage().getScaledInstance(ancho, alto, Image.SCALE_DEFAULT)));
     }
 
     /**
