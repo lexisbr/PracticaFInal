@@ -18,7 +18,7 @@ public class Juego extends JFrame {
         for(int i=0;i < tablero.length;i++){
             for(int j=0; j < tablero.length;j++){
 
-                tablero[i][j]= terreno.inicializarTanque();
+               // tablero[i][j]= terreno.inicializarTanque();
                 VentanaJuego.add(tablero[i][j]);
             }
         }
