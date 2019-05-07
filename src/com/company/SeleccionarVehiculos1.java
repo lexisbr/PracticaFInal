@@ -22,12 +22,13 @@ public class SeleccionarVehiculos1 extends JFrame {
     private  String[] v= new String[3];
     private  String[] nv= new String[3];
     Juego a=new Juego();
+    JFrame selec = new JFrame("Seleccione sus vehiculos");
 
     public void SeleccionarVehiculos1() {
-        this.setSize(600,250);
-        this.add(panel1);
-        this.add(panel2);
-        this.getContentPane().add(BorderLayout.NORTH,panel1);
+        selec.setSize(600,250);
+        selec.add(panel1);
+        selec.add(panel2);
+        selec.getContentPane().add(BorderLayout.NORTH,panel1);
 
         continuarButton.addActionListener(new ActionListener() {
             @Override
@@ -63,10 +64,12 @@ public class SeleccionarVehiculos1 extends JFrame {
                 for(int i = 0; i<3;i++) {
                     System.out.println(v[i]+" - "+ nv[i]);
                     a.generarVehiculos(v[i], nv[i]);
+                    selec.setVisible(false);
+                    selec.dispose();
                 }
             }
         });
-        this.setVisible(true);
+        selec.setVisible(true);
 
     }
 

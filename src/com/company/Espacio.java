@@ -18,6 +18,9 @@ public abstract class Espacio extends JButton {//Abstraccion
      * Constructor
      */
     Espacio(){
+
+        movil = null;
+
        // this.setText("holi");
 
         //JButton espacio = new JButton("kpdo");
@@ -31,6 +34,11 @@ public abstract class Espacio extends JButton {//Abstraccion
      */
     public void setMovil(Vehiculo movil){
         this.movil = movil;
+        ImageIcon vehiculo = new ImageIcon(movil.getVehiculo());
+        this.setIcon(new ImageIcon(vehiculo.getImage().getScaledInstance(ancho,alto, Image.SCALE_DEFAULT)));
+    }
+    public void eraseMovil(){
+        this.setIcon(null);
 
     }
     /**
