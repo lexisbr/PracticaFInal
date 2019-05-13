@@ -59,11 +59,19 @@ public class Juego extends JFrame {
     JPanel ventana = new JPanel();
     JPanel ventana1 = new JPanel();
     JButton fin = new JButton("Fin");
-
+    /**
+     * Constructor
+     * Juego
+     *
+     */
     Juego() {
 
     }
-
+    /**
+     * Juego
+     * @param diX dimension en x
+     * @param diY dimension en y
+     */
     Juego(int diX, int diY) {
         Dx = diX;
         Dy = diY;
@@ -91,7 +99,10 @@ public class Juego extends JFrame {
 
         //  VentanaJuego.setVisible(true);
     }
-
+    /**
+     * Juego
+     * @param modojuego modo de juego
+     */
     public void Juego(boolean modojuego) {
         VentanaJuego.setSize(700, 700);
         VentanaJuego.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -101,7 +112,11 @@ public class Juego extends JFrame {
 
         }
     }
-
+    /**
+     * generarVehiculos
+     * @param v tipo de vehiculo
+     * @param nv nombre del vehiculo
+     */
     public void generarVehiculos(String v, String nv) {
 
         if (v == "Tanque") {
@@ -116,13 +131,22 @@ public class Juego extends JFrame {
         VentanaJuego.setVisible(true);
 
     }
-
+    /**
+     * vehiculos1J
+     * llama a clase para seleccionar vehiculos
+     *
+     */
     public void vehiculos1J() {
         SeleccionarVehiculos1 b = new SeleccionarVehiculos1();
         b.SeleccionarVehiculos1();
 
     }
-
+    /**
+     * Escenario1
+     * @param j longitud en y del array
+     * @param i longitud en x del array
+     *
+     */
     public void Escenario1(int j, int i) {
         if (i < (Dx - 3) && j < (Dy - 2) && i != (Dx - 1) && j != (Dy - 1) && i != (Dx - 2) && j != (Dy - 2))
             tablero[j][i] = new EspacioAgua();
@@ -131,7 +155,11 @@ public class Juego extends JFrame {
         } else
             tablero[j][i] = new EspacioTierra();
     }
-
+    /**
+     * accionesVehiculo
+     * Seleccionar accion del vehiculo
+     *
+     */
     public void accionesVehiculo() {
         for (int i = 0; i < Dy; i++) {
             for (int j = 0; j < Dx; j++) {
@@ -170,7 +198,11 @@ public class Juego extends JFrame {
 
         }
     }
-
+    /**
+     * moverVehiculo
+     * @param mov cantidad de unidades para mover
+     *
+     */
     public void moverVehiculo(int mov) {
 
         //Crea nueva ventana
@@ -374,7 +406,12 @@ public class Juego extends JFrame {
         frame2.setVisible(true);
     }
 
-
+    /**
+     * moverVehiculo
+     * @param x posicion en array del vehiculo
+     * @param y posicion en array del vehiculo
+     *
+     */
     public void seleccionAccion(int x, int y) {
         //Crea nueva ventana
         JFrame frame3 = new JFrame("Seleccionar Accion");
@@ -447,7 +484,12 @@ public class Juego extends JFrame {
         //Visible
         frame3.setVisible(true);
     }
-
+    /**
+     * dadoMovimiento
+     * Ventana para tirar dado
+     *
+     *
+     */
     public void dadoMovimiento() {
         /*  DadoMovimiento c = new DadoMovimiento(VentanaJuego);
           moverVehiculo(c.getDado());*/
@@ -492,14 +534,14 @@ public class Juego extends JFrame {
         });
     }
 
-    public void pause(int time) {
-        try {
-            Thread.sleep(time);
-        } catch (InterruptedException e) {
-            System.out.println("Error");
-        }
-    }
-
+    /**
+     * movimientoValido
+     * @param x posicion en array del vehiculo
+     * @param y posicion en array del vehiculo
+     * @param d direccion
+     * @param u unidades
+     * @return boolean
+     */
     public boolean movimientoValido(int x, int y, int d, int u) {
         //Para saber que su movimiento es dentro del rango
         int contespacios = 0;
@@ -556,13 +598,25 @@ public class Juego extends JFrame {
         return false;
     }
 
-    //Movimiento
+    /**
+     * moverMovil
+     * @param viejo posicion anterior
+     * @param nuevo posicion nueva
+     *
+     */
     public void moverMovil(Espacio viejo, Espacio nuevo) {
         //Set vehiculo en posicion nueva
         nuevo.setMovil(viejo.getMovil());
         //Borra posicion anterior
         viejo.eraseMovil();
     }
+
+    /**
+     * searchTipoVehiculo
+     * @param i posicion x
+     * @param j posicion y
+     * @return String
+     */
 
     public String searchTipoVehiculo(int i, int j) {
         if (tablero[i][j].movil instanceof Tanque) {
@@ -573,6 +627,16 @@ public class Juego extends JFrame {
         return "";
     }
 
+    /**
+     * verificarTipo
+     * @param tipoTanque Tanque
+     * @param tipoAvion Avion
+     * @param direccion direccion
+     * @param movimiento unidades
+     * @param i posicion en X
+     * @param j posicion en y
+     * @return boolean
+     */
     public boolean verificarTipo(boolean tipoTanque, boolean tipoAvion, int direccion, int movimiento, int i, int j) {
         nuevosnuevos = 0;
         if (tipoTanque == true) {
@@ -662,6 +726,15 @@ public class Juego extends JFrame {
         return false;
     }
 
+    /**
+     * nuevoMovimiento
+     * @param y posicion en y
+     * @param x posicion en x
+     * @param d direccion
+     * @param u unidad
+     * @param movil tipo de movil
+     * @return int
+     */
     public int nuevoMovimiento(int y, int x, int d, int u, String movil) {
         int contespacios = 0;
         System.out.println(movil + " " + d);
@@ -779,6 +852,14 @@ public class Juego extends JFrame {
 
     }
 
+    /**
+     * verificarObstaculo
+     * @param y posicion en  y
+     * @param x posicion en x
+     * @param d direccion
+     * @param mov unidades
+     * @return boolean
+     */
     public boolean verificarObstaculo(int y, int x, int d, int mov) {
         System.out.println("Verificar obstaculo=================");
         int cont = 0;
