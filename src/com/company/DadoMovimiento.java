@@ -19,7 +19,6 @@ public class DadoMovimiento extends JFrame{
     Random rgen = new Random();
     int valor;
     boolean yap = false;
-    Juego a = new Juego();
     DadoMovimiento(JFrame a){
 
         frame5.setSize(400,400);

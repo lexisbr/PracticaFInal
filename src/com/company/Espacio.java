@@ -39,6 +39,7 @@ public abstract class Espacio extends JButton {//Abstraccion
         this.setIcon(new ImageIcon(vehiculo.getImage().getScaledInstance(ancho,alto, Image.SCALE_DEFAULT)));
     }
     public void eraseMovil(){
+        this.movil=null;
         this.setIcon(null);
 
     }

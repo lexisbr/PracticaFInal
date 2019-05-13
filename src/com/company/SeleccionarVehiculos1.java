@@ -19,9 +19,14 @@ public class SeleccionarVehiculos1 extends JFrame {
     private JTextField nombre2;
     private JTextField nombre3;
     private JButton continuarButton;
+    private JCheckBox a4x4CheckBox;
+    private JCheckBox a6x4CheckBox;
+    private JCheckBox a8x9CheckBox;
     private  String[] v= new String[3];
     private  String[] nv= new String[3];
-    Juego a=new Juego();
+    int dx=6;
+    int dy=4;
+    Juego a;
     JFrame selec = new JFrame("Seleccione sus vehiculos");
 
     public void SeleccionarVehiculos1() {
@@ -61,6 +66,20 @@ public class SeleccionarVehiculos1 extends JFrame {
                     v[2]="Avion";
                     nv[2]=nombre3.getText();
                 }
+                if(a4x4CheckBox.isSelected()){
+                    dx=4;
+                    dy=4;
+                }
+                if(a6x4CheckBox.isSelected()){
+                    dx=6;
+                    dy=4;
+                }
+                if(a8x9CheckBox.isSelected()){
+                    dx=8;
+                    dy=9;
+                }
+                a =new Juego(dx,dy);
+                System.out.println("Filas: "+dy+" Columnas: "+dx);
                 for(int i = 0; i<3;i++) {
                     System.out.println(v[i]+" - "+ nv[i]);
                     a.generarVehiculos(v[i], nv[i]);
