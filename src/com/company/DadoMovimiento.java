@@ -16,8 +16,12 @@ public class DadoMovimiento extends JFrame{
     protected static final String DADO  = "src/com/company/iconos/dado.png";
     ImageIcon dado1 = new ImageIcon(DADO);
     JFrame frame5 = new JFrame();
+    Random rgen = new Random();
+    int valor;
     boolean yap = false;
-    DadoMovimiento(){
+    Juego a = new Juego();
+    DadoMovimiento(JFrame a){
+
         frame5.setSize(400,400);
         frame5.add(panel1);
         dado.setIcon(new ImageIcon(dado1.getImage().getScaledInstance(ancho,alto, Image.SCALE_DEFAULT)));
@@ -25,7 +29,8 @@ public class DadoMovimiento extends JFrame{
         dado.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String valor1 = String.valueOf(valorDado());
+                valorDado();
+                String valor1 = String.valueOf(getDado());
                     valordado.setText(valor1);
 
             }
@@ -39,11 +44,11 @@ public class DadoMovimiento extends JFrame{
             }
         });
     }
-    public int valorDado(){
-        int valor;
-        Random rgen = new Random();
+    public void valorDado(){
         valor = rgen.nextInt(6);
         valor++;
+    }
+    public int getDado(){
         return valor;
     }
 

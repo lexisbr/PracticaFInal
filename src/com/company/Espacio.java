@@ -10,7 +10,9 @@ public abstract class Espacio extends JButton {//Abstraccion
     protected Vehiculo movil;//Polimorfismo
     int ancho = 32;
     int alto = -1;
-    protected static final String Tierra  = "out/production/PracticaFInal/com/company/iconos/tierra.jpg";
+    protected static final Color Tierra  = new Color(182, 77, 31);
+    protected static final Color Agua  = new Color(44, 94, 255);
+    protected static final Color Montana  = new Color(15, 170, 0);
 
 
 
@@ -18,7 +20,6 @@ public abstract class Espacio extends JButton {//Abstraccion
      * Constructor
      */
     Espacio(){
-
         movil = null;
 
        // this.setText("holi");
@@ -113,6 +114,9 @@ public abstract class Espacio extends JButton {//Abstraccion
             return movil.getVehiculo();
         return "";
     }
+    public void setColor(){
+        this.setBackground(getCuadroColor());
+    }
 
 
     /**
@@ -147,7 +151,7 @@ public abstract class Espacio extends JButton {//Abstraccion
      * Retorna color y cuadro
      * @return
      */
-    abstract String getCuadroColor();
+    abstract Color getCuadroColor();
 
 
 
