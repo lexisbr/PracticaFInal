@@ -18,6 +18,7 @@ public abstract class Espacio extends JButton {//Abstraccion
 
     /**
      * Constructor
+     * Espacio
      */
     Espacio(){
         movil = null;
@@ -38,6 +39,11 @@ public abstract class Espacio extends JButton {//Abstraccion
         ImageIcon vehiculo = new ImageIcon(movil.getVehiculo());
         this.setIcon(new ImageIcon(vehiculo.getImage().getScaledInstance(ancho,alto, Image.SCALE_DEFAULT)));
     }
+
+    /**
+     * eraseMovil
+     * borra el vehiculo
+     */
     public void eraseMovil(){
         this.movil=null;
         this.setIcon(null);
@@ -51,7 +57,9 @@ public abstract class Espacio extends JButton {//Abstraccion
         return movil;
     }
     /**
+     * inicializarTanque
      * Metodo para inicializar tanque
+     * @param nombre nickname
      *
      */
     public void inicializarTanque(String nombre){
@@ -62,6 +70,10 @@ public abstract class Espacio extends JButton {//Abstraccion
 
 
     }
+
+    /**
+     * inicializarTanque
+     */
     public void inicializarTanque(){
         movil = new Tanque();
         ImageIcon vehiculo = new ImageIcon(movil.getVehiculo());
@@ -69,7 +81,9 @@ public abstract class Espacio extends JButton {//Abstraccion
 
     }
     /**
+     * inicializarAvion
      * Metodo para inicializar avion
+     * @param nombre nickname
      *
      */
     public void inicializarAvion(String nombre){
@@ -78,12 +92,17 @@ public abstract class Espacio extends JButton {//Abstraccion
         ImageIcon vehiculo = new ImageIcon(movil.getVehiculo());
         this.setIcon(new ImageIcon(vehiculo.getImage().getScaledInstance(ancho,alto, Image.SCALE_DEFAULT)));
     }
+
+    /**
+     * inicializarAvion
+     */
     public void inicializarAvion(){
         movil = new Avion();
         tipoV=5;
         movil.getVehiculo();
     }
     /**
+     * inicializarEnemigo
      * Metodo para inicializar Enemigo
      *
      */
@@ -94,19 +113,20 @@ public abstract class Espacio extends JButton {//Abstraccion
     }
     /**
      * Retorna hp
-     * @return
+     * @return int
      */
     public int getHp() {
         return hp;
     }
     /**
      * Establece el hp
-     * @param hp
+     * @param hp vida
      */
     public void setHp(int hp) {
         this.hp = hp;
     }
     /**
+     * Escenario1
      * Metodo para espacio en matriz
      *
      */
@@ -118,31 +138,12 @@ public abstract class Espacio extends JButton {//Abstraccion
     public void setColor(){
         this.setBackground(getCuadroColor());
     }
-
-
-    /**
-     * Retorna tipo
-     * @return
-     */
-
-    /**
-     * Establece el tipo
-     * @param tipo
-     */
-
-    /**
-     * Retorna color y cuadro
-     * @return
-     */
-
-
-
     /**
      * Retorna tipo
      * @return
      */
     abstract int getTipo();
-    abstract int getTipoV();
+
     /**
      * Establece el tipo
      * @param tipo

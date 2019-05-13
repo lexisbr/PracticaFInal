@@ -18,6 +18,16 @@ public class Avion extends Vehiculo{//Herencia
         tipoV=5;
         arma=tipoarma;
     }
+
+    /**
+     * Avion
+     * @param hp
+     * @param pp
+     * @param nivel
+     * @param xp
+     * @param nickname
+     * @param arma
+     */
     public Avion(int hp, int pp, int nivel, int xp, String nickname, String arma){
         super(hp,pp,nivel,xp,nickname,arma);
         ataque=7;

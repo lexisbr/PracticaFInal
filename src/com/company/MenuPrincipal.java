@@ -15,6 +15,9 @@ public class MenuPrincipal extends JFrame {
     private JButton opciones;
     private JButton reportes;
 
+    /**
+     * MenuPrincipal
+     */
     public void MenuPrincipal(){
         panelTitulo = new JPanel();
         panelBotones = new JPanel();
@@ -71,15 +74,27 @@ public class MenuPrincipal extends JFrame {
 
         frame.setVisible(true);
     }
+
+    /**
+     * iniciarJuego
+     */
     public void iniciarJuego(){
         OpcionesJuego a = new OpcionesJuego();
         a.OpcionesJuego();
         frame.setVisible(false);
         frame.dispose();
     }
+
+    /**
+     * iniciarOpciones
+     */
     public void iniciarOpciones(){
 
     }
+
+    /**
+     * iniciarReportes
+     */
     public void iniciarReportes(){
 
     }

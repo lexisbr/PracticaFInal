@@ -20,6 +20,9 @@ public class SeleccionarModoJuego extends JFrame {
     int dx=0;
     int dy=0;
 
+    /**
+     * SeleccionarModoJuegop
+     */
     public void SeleccionarModoJuego(){
         ventanaModo.setSize(400,150);
         ventanaModo.setTitle("Modo de Juego");
@@ -66,9 +69,19 @@ public class SeleccionarModoJuego extends JFrame {
         );
         ventanaModo.setVisible(true);
     }
+
+    /**
+     * jvj
+     * 2 Jugadores
+     */
     public void jvsj(){
         modojuego1 = false;
     }
+
+    /**
+     * jvspc
+     * 1 Jugador
+     */
     public void jvspc(){
         modojuego1 = true;
         if(a4x4CheckBox.isSelected()){

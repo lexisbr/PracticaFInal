@@ -491,8 +491,6 @@ public class Juego extends JFrame {
      *
      */
     public void dadoMovimiento() {
-        /*  DadoMovimiento c = new DadoMovimiento(VentanaJuego);
-          moverVehiculo(c.getDado());*/
         JButton dado = new JButton();
         JLabel valordado = new JLabel("Tira el dado!");
         JPanel panel1 = new JPanel();

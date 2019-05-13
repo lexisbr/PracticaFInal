@@ -5,7 +5,12 @@ import java.awt.*;
 public class EspacioAgua extends Espacio {//Herencia
     int tipo = 2;
     int hp = 5;
-
+    /**
+     * Constructor
+     * EspacioAgua
+     * @param tipo tipo
+     * @param hp vida
+     */
     public EspacioAgua(int tipo, int hp) {
         this.tipo = tipo;
         this.hp = hp;

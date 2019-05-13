@@ -10,14 +10,26 @@ abstract public class Vehiculo extends JButton {//Abstraccion
     protected static final String AvionSRC  = "src/com/company/iconos/avion.png";
     protected static final String EnemigoSRC  = "src/com/company/iconos/enemigo.png";
     protected static final String BootSRC  = "src/com/company/iconos/boot.png";
+
     /**
      * Constructor
+     * Vehiculo
+     * @param hp
+     * @param pp
+     * @param nivel
+     * @param xp
+     * @param nickname
+     * @param arma
      */
     public Vehiculo(int hp, int pp, int nivel, int xp, String nickname, String arma) {
         this();
         this.nickname = nickname;
         arma = tipoarma;
     }
+
+    /**
+     * Vehiculo
+     */
     public Vehiculo(){
         hp=50;
         pp = 5;

@@ -6,6 +6,7 @@ public class Tanque extends Vehiculo{//Herencia
     String tipoarma="Arma Basica Tanque";
     /**
      * Constructor
+     * Tanque
      */
     public Tanque()
     {
@@ -18,6 +19,16 @@ public class Tanque extends Vehiculo{//Herencia
         tipoV=4;
         arma=tipoarma;
     }
+
+    /**
+     * Tanque
+     * @param hp
+     * @param pp
+     * @param nivel
+     * @param xp
+     * @param nickname
+     * @param arma
+     */
     public Tanque(int hp, int pp, int nivel, int xp, String nickname, String arma){
         //super(hp,pp,nivel,xp,nickname,arma);
         super(nickname);

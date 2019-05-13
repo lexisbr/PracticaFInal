@@ -5,6 +5,7 @@ public class Enemigos extends Vehiculo{
     int tipoV=6;
     /**
      * Constructor
+     * Enemigos
      *
      */
     public Enemigos(int nivel) {

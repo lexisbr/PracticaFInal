@@ -12,6 +12,11 @@ public class OpcionesJuego extends JFrame {
     private JPanel modo;
     private JButton nuevo;
     private JButton cargar;
+
+    /**
+     * OpcionesJuego
+     * Nuevo o cargar partida
+     */
     public void OpcionesJuego(){
         opcion.setSize(400,150);
         opcion.setDefaultCloseOperation(EXIT_ON_CLOSE);

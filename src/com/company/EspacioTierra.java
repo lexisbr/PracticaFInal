@@ -6,6 +6,12 @@ public class EspacioTierra extends Espacio {//Herencia
     int tipo=1;
     int hp=5;
 
+    /**
+     * Constructor
+     * EspacioTierra
+     * @param tipo tipo
+     * @param hp vida
+     */
     public EspacioTierra(int tipo, int hp) {
         this.tipo = tipo;
         this.hp = hp;

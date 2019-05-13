@@ -6,10 +6,21 @@ public class EspacioMontana extends Espacio {//Herencia
     int tipo=1;
     int hp=5;
 
+    /**
+     * Constructor
+     * EspacioMontana
+     * @param tipo tipo
+     * @param hp vida
+     */
     public EspacioMontana(int tipo, int hp) {
         this.tipo = tipo;
         this.hp = hp;
     }
+
+    /**
+     * Constructor
+     * EspacioMontana
+     */
     public EspacioMontana(){
         this.setBackground(new java.awt.Color(20, 182, 9));
     }
