@@ -7,11 +7,13 @@ import java.awt.event.ActionListener;
 import java.util.Random;
 
 public class Juego extends JFrame {
+    boolean funciona = false;
     int ancho = 32;
     int alto = -1;
     int valor = 0;
     int nuevos = 0;
-    int nuevosnuevos=0;
+    int nuevosnuevos = 0;
+    int obstaculo=0;
     private JPanel inicioJuego;
     private JLabel modojuegoLabel = new JLabel();
     private JLabel nombreVehiculo;
@@ -101,19 +103,13 @@ public class Juego extends JFrame {
     }
 
     public void generarVehiculos(String v, String nv) {
-        System.out.println(e);
-        System.out.println("*" + v);
 
         if (v == "Tanque") {
-            System.out.println(v);
             tablero[(Dy - 1)][0 + e].inicializarTanque(nv);
-
             e++;
         }
         if (v == "Avion") {
-            System.out.println(v);
             tablero[(Dy - 1)][0 + e].inicializarAvion(nv);
-
             e++;
         }
 
@@ -128,12 +124,11 @@ public class Juego extends JFrame {
     }
 
     public void Escenario1(int j, int i) {
-        if (i < (Dx - 3) && j < (Dy - 2)&&i!=(Dx-1)&&j!=(Dy-1)&&i!=(Dx-2)&&j!=(Dy-2))
+        if (i < (Dx - 3) && j < (Dy - 2) && i != (Dx - 1) && j != (Dy - 1) && i != (Dx - 2) && j != (Dy - 2))
             tablero[j][i] = new EspacioAgua();
-        else if((i==(Dx-1)&&j==(Dy-1))||(i==(Dx-2)&&j==(Dy-2))) {
+        else if ((i == (Dx - 1) && j == (Dy - 1)) || (i == (Dx - 2) && j == (Dy - 2))) {
             tablero[j][i] = new EspacioMontana();
-        }
-        else
+        } else
             tablero[j][i] = new EspacioTierra();
     }
 
@@ -213,10 +208,14 @@ public class Juego extends JFrame {
                                     // tablero[i][j].setText("");
                                     if (movimientoValido(i, j, 8, mov)) {
                                         if (verificarTipo(tablero[i][j].movil instanceof Tanque, tablero[i][j].movil instanceof Avion, 8, mov, i, j)) {
-                                            moverMovil(tablero[i][j], tablero[i - (mov)][j]);
-                                            System.out.println(i + " " + j);
-                                            System.out.println("*" + mov);
-                                        } else if(nuevosnuevos!=0){
+                                            if(verificarObstaculo(i,j,8,mov)&&obstaculo!=0) {
+                                                System.out.println("nuevo " + obstaculo);
+                                                System.out.println("unidades" + mov);
+                                                moverMovil(tablero[i][j], tablero[i - (obstaculo)][j]);
+                                            }else if(obstaculo!=0){
+                                                moverMovil(tablero[i][j], tablero[i - (mov)][j]);
+                                            }
+                                        } else if (nuevosnuevos != 0) {
                                             System.out.println("MOVETE");
                                             moverMovil(tablero[i][j], tablero[i - (nuevosnuevos)][j]);
                                         }
@@ -226,7 +225,7 @@ public class Juego extends JFrame {
                                                 moverMovil(tablero[i][j], tablero[i - (nuevos)][j]);
                                                 System.out.println(i + " " + j);
                                                 System.out.println("*" + nuevos);
-                                            }else if(nuevosnuevos!=0){
+                                            } else if (nuevosnuevos != 0) {
                                                 System.out.println("MOVETE2");
                                                 moverMovil(tablero[i][j], tablero[i - (nuevosnuevos)][j]);
                                             }
@@ -253,10 +252,15 @@ public class Juego extends JFrame {
                                     // tablero[i][j].setText("");
                                     if (movimientoValido(i, j, 2, mov)) {
                                         if (verificarTipo(tablero[i][j].movil instanceof Tanque, tablero[i][j].movil instanceof Avion, 2, mov, i, j)) {
-                                            moverMovil(tablero[i][j], tablero[i + (mov)][j]);
-                                            System.out.println(i + " " + j);
-                                            System.out.println("*" + mov);
-                                        } else if(nuevosnuevos!=0){
+                                            if(verificarObstaculo(i,j,2,mov)&&obstaculo!=0) {
+                                                System.out.println("nuevo " + obstaculo);
+                                                moverMovil(tablero[i][j], tablero[i + (obstaculo)][j]);
+                                                System.out.println(i + " " + j);
+                                                System.out.println("*" + mov);
+                                            } else if (obstaculo!=0) {
+                                                moverMovil(tablero[i][j], tablero[i + (mov)][j]);
+                                            }
+                                        } else if (nuevosnuevos != 0) {
                                             System.out.println("MOVETE");
                                             moverMovil(tablero[i][j], tablero[i + (nuevosnuevos)][j]);
                                         }
@@ -266,7 +270,7 @@ public class Juego extends JFrame {
                                                 moverMovil(tablero[i][j], tablero[i + (nuevos)][j]);
                                                 System.out.println(i + " " + j);
                                                 System.out.println("*" + nuevos);
-                                            }else if(nuevosnuevos!=0){
+                                            } else if (nuevosnuevos != 0) {
                                                 System.out.println("MOVETE2");
                                                 moverMovil(tablero[i][j], tablero[i + (nuevosnuevos)][j]);
                                             }
@@ -293,11 +297,12 @@ public class Juego extends JFrame {
                                     if (movimientoValido(i, j, 4, mov)) {
                                         if (verificarTipo(tablero[i][j].movil instanceof Tanque, tablero[i][j].movil instanceof Avion, 4, mov, i, j)) {
                                             moverMovil(tablero[i][j], tablero[i][j - (mov)]);
+                                            System.out.println("nuevo " + nuevosnuevos);
                                             System.out.println(i + " " + j);
                                             System.out.println("*" + mov);
-                                        } else if(nuevosnuevos!=0){
+                                        } else if (nuevosnuevos != 0) {
                                             System.out.println("MOVETE");
-                                            moverMovil(tablero[i][j], tablero[i][j-(nuevosnuevos)]);
+                                            moverMovil(tablero[i][j], tablero[i][j - (nuevosnuevos)]);
                                         }
                                     } else {
                                         if (nuevos != 0) {
@@ -305,9 +310,9 @@ public class Juego extends JFrame {
                                                 moverMovil(tablero[i][j], tablero[i][j - (nuevos)]);
                                                 System.out.println(i + " " + j);
                                                 System.out.println("*" + nuevos);
-                                            }else if(nuevosnuevos!=0){
+                                            } else if (nuevosnuevos != 0) {
                                                 System.out.println("MOVETE2");
-                                                moverMovil(tablero[i][j], tablero[i][j-(nuevosnuevos)]);
+                                                moverMovil(tablero[i][j], tablero[i][j - (nuevosnuevos)]);
                                             }
                                         }
                                     }
@@ -331,20 +336,23 @@ public class Juego extends JFrame {
                                     // tablero[i][j].setText("");
                                     if (movimientoValido(i, j, 6, mov)) {
                                         if (verificarTipo(tablero[i][j].movil instanceof Tanque, tablero[i][j].movil instanceof Avion, 6, mov, i, j)) {
+                                            System.out.println("nuevo " + nuevosnuevos);
                                             moverMovil(tablero[i][j], tablero[i][j + (mov)]);
                                             System.out.println(i + " " + j);
                                             System.out.println("*" + mov);
-                                        } else if(nuevosnuevos!=0){
+
+                                        } else if (nuevosnuevos != 0) {
                                             System.out.println("MOVETE");
                                             moverMovil(tablero[i][j], tablero[i][j + (nuevosnuevos)]);
                                         }
                                     } else {
                                         if (nuevos != 0) {
                                             if (verificarTipo(tablero[i][j].movil instanceof Tanque, tablero[i][j].movil instanceof Avion, 6, nuevos, i, j)) {
+                                                System.out.println("nuevo " + nuevosnuevos);
                                                 moverMovil(tablero[i][j], tablero[i][j + (nuevos)]);
                                                 System.out.println(i + " " + j);
                                                 System.out.println("*" + nuevos);
-                                            }else if(nuevosnuevos!=0){
+                                            } else if (nuevosnuevos != 0) {
                                                 System.out.println("MOVETE2");
                                                 moverMovil(tablero[i][j], tablero[i][j + (nuevosnuevos)]);
                                             }
@@ -566,15 +574,15 @@ public class Juego extends JFrame {
     }
 
     public boolean verificarTipo(boolean tipoTanque, boolean tipoAvion, int direccion, int movimiento, int i, int j) {
-         nuevosnuevos = 0;
+        nuevosnuevos = 0;
         if (tipoTanque == true) {
             if (direccion == 8) {
                 if (tablero[i - movimiento][j] instanceof EspacioTierra || tablero[i - movimiento][j] instanceof EspacioMontana) {
                     return true;
                 } else {
                     System.out.println("Nel arriba ");
-                    nuevosnuevos = nuevoMovimiento(i, j,direccion, movimiento, "Tanque");
-                    System.out.println("nuevosnuevos "+nuevosnuevos);
+                    nuevosnuevos = nuevoMovimiento(i, j, direccion, movimiento, "Tanque");
+                    System.out.println("nuevosnuevos " + nuevosnuevos);
                     return false;
                 }
             }
@@ -583,8 +591,8 @@ public class Juego extends JFrame {
                     return true;
                 } else {
                     System.out.println("Nel abajo");
-                    nuevosnuevos = nuevoMovimiento(i, j,direccion, movimiento, "Tanque");
-                    System.out.println("nuevosnuevos "+nuevosnuevos);
+                    nuevosnuevos = nuevoMovimiento(i, j, direccion, movimiento, "Tanque");
+                    System.out.println("nuevosnuevos " + nuevosnuevos);
                     return false;
                 }
             }
@@ -593,8 +601,8 @@ public class Juego extends JFrame {
                     return true;
                 } else {
                     System.out.println("Nel izq");
-                    nuevosnuevos = nuevoMovimiento(i, j,direccion, movimiento, "Tanque");
-                    System.out.println("nuevosnuevos "+nuevosnuevos);
+                    nuevosnuevos = nuevoMovimiento(i, j, direccion, movimiento, "Tanque");
+                    System.out.println("nuevosnuevos " + nuevosnuevos);
                     return false;
                 }
             }
@@ -603,8 +611,50 @@ public class Juego extends JFrame {
                     return true;
                 } else {
                     System.out.println("Nel der");
-                    nuevosnuevos = nuevoMovimiento(i, j,direccion, movimiento, "Tanque");
-                    System.out.println("nuevosnuevos "+nuevosnuevos);
+                    nuevosnuevos = nuevoMovimiento(i, j, direccion, movimiento, "Tanque");
+                    System.out.println("nuevosnuevos " + nuevosnuevos);
+                    return false;
+                }
+            }
+        }
+        if (tipoAvion == true) {
+            if (direccion == 8) {
+                if (tablero[i - movimiento][j] instanceof EspacioTierra || tablero[i - movimiento][j] instanceof EspacioAgua) {
+                    return true;
+                } else {
+                    System.out.println("Nel arriba ");
+                    nuevosnuevos = nuevoMovimiento(i, j, direccion, movimiento, "Avion");
+                    System.out.println("nuevosnuevos " + nuevosnuevos);
+                    return false;
+                }
+            }
+            if (direccion == 2) {
+                if (tablero[i + movimiento][j] instanceof EspacioTierra || tablero[i + movimiento][j] instanceof EspacioAgua) {
+                    return true;
+                } else {
+                    System.out.println("Nel abajo");
+                    nuevosnuevos = nuevoMovimiento(i, j, direccion, movimiento, "Avion");
+                    System.out.println("nuevosnuevos " + nuevosnuevos);
+                    return false;
+                }
+            }
+            if (direccion == 4) {
+                if (tablero[i][j - movimiento] instanceof EspacioTierra || tablero[i][j - movimiento] instanceof EspacioAgua) {
+                    return true;
+                } else {
+                    System.out.println("Nel izq");
+                    nuevosnuevos = nuevoMovimiento(i, j, direccion, movimiento, "Avion");
+                    System.out.println("nuevosnuevos " + nuevosnuevos);
+                    return false;
+                }
+            }
+            if (direccion == 6) {
+                if (tablero[i][j + movimiento] instanceof EspacioTierra || tablero[i][j + movimiento] instanceof EspacioAgua) {
+                    return true;
+                } else {
+                    System.out.println("Nel der");
+                    nuevosnuevos = nuevoMovimiento(i, j, direccion, movimiento, "Avion");
+                    System.out.println("nuevosnuevos " + nuevosnuevos);
                     return false;
                 }
             }
@@ -614,23 +664,24 @@ public class Juego extends JFrame {
 
     public int nuevoMovimiento(int y, int x, int d, int u, String movil) {
         int contespacios = 0;
-        System.out.println(movil+" "+d);
+        System.out.println(movil + " " + d);
         //Arriba
         if (movil.equals("Tanque")) {
             if (d == 8) {
                 System.out.println("taNQue");
                 for (int i = (y - 1); i >= 0; i--) {
-                    System.out.println("shopues");
+
                     if (tablero[i][x] instanceof EspacioAgua) {
                         System.out.println("Agua");
                         return contespacios;
+
 
                     }
                     contespacios++;
                 }
 
             }
-           //Abajo
+            //Abajo
             if (d == 2) {
                 for (int i = (y + 1); i < Dy; i++) {
                     if (tablero[i][x] instanceof EspacioAgua) {
@@ -647,7 +698,7 @@ public class Juego extends JFrame {
                 for (int i = (x - 1); i >= 0; i--) {
 
                     if (tablero[y][i] instanceof EspacioAgua) {
-                        System.out.println("Agua "+i);
+                        System.out.println("Agua " + i);
                         return contespacios;
 
                     }
@@ -670,8 +721,167 @@ public class Juego extends JFrame {
             }
 
         }
-            return 0;
 
+        if (movil.equals("Avion")) {
+            if (d == 8) {
+                System.out.println("avion");
+                for (int i = (y - 1); i >= 0; i--) {
+                    if (tablero[i][x] instanceof EspacioMontana) {
+                        System.out.println("Montana");
+                        return contespacios;
+
+                    }
+                    contespacios++;
+                }
+
+            }
+            //Abajo
+            if (d == 2) {
+                for (int i = (y + 1); i < Dy; i++) {
+                    if (tablero[i][x] instanceof EspacioMontana) {
+                        System.out.println("Agua");
+                        return contespacios;
+
+                    }
+                    contespacios++;
+                }
+
+            }
+            //Izquierda
+            if (d == 4) {
+                for (int i = (x - 1); i >= 0; i--) {
+
+                    if (tablero[y][i] instanceof EspacioMontana) {
+                        System.out.println("Agua " + i);
+                        return contespacios;
+
+                    }
+                    contespacios++;
+
+                }
+            }
+            //Derecha
+            if (d == 6) {
+                for (int i = (x + 1); i < Dx; i++) {
+
+                    if (tablero[y][i] instanceof EspacioMontana) {
+                        System.out.println("Agua");
+                        return contespacios;
+
+                    }
+                    contespacios++;
+
+                }
+            }
+
+        }
+        return 0;
+
+    }
+
+    public boolean verificarObstaculo(int y, int x, int d, int mov) {
+        System.out.println("Verificar obstaculo=================");
+        int cont = 0;
+        if (tablero[y][x].movil instanceof Tanque) {
+            if (d == 8) {
+                for (int i = (y - 1); i >= mov; i--) {
+                    if (tablero[i][x] instanceof EspacioAgua) {
+                        obstaculo = cont;
+                        return true;
+                    }
+                    cont++;
+                }
+            }
+            //Abajo
+            if (d == 2) {
+                for (int i = (y + 1); i < mov; i++) {
+                    if (tablero[i][x] instanceof EspacioAgua) {
+                        obstaculo = cont;
+                        return true;
+                    }
+                    cont++;
+                }
+
+            }
+            //Izquierda
+            if (d == 4) {
+                for (int i = (x - 1); i >= mov; i--) {
+
+                    if (tablero[y][i] instanceof EspacioAgua) {
+                        obstaculo = cont;
+                        return true;
+                    }
+                    cont++;
+                }
+            }
+            //Derecha
+            if (d == 6) {
+                for (int i = (x + 1); i < mov; i++) {
+
+                    if (tablero[y][i] instanceof EspacioAgua) {
+                        obstaculo = cont;
+                        return true;
+
+                    }
+                    cont++;
+
+                }
+            }
+        }
+        if (tablero[y][x].movil instanceof Avion) {
+            System.out.println("obstaculo Avion");
+                if (d == 8) {
+                    for (int i = (y - 1); i >= mov; i--) {
+                        if (tablero[i][x] instanceof EspacioMontana) {
+                            System.out.println("Espacios disp: "+cont);
+                            obstaculo = cont;
+                            return true;
+                        }
+                        cont++;
+                    }
+                }
+                //Abajo
+                if (d == 2) {
+                    System.out.println("abajo");
+                    for (int i = (y); i < (y+mov); i++) {
+                        System.out.println("AAAAA");
+                        if (tablero[i][x] instanceof EspacioMontana) {
+                            System.out.println("Espacios disp hacia abajo: "+cont);
+                            obstaculo = cont;
+                            return true;
+                        }
+                        cont++;
+                    }
+
+                }
+                //Izquierda
+                if (d == 4) {
+                    for (int i = (x - 1); i >= mov; i--) {
+
+                        if (tablero[y][i] instanceof EspacioMontana) {
+                            obstaculo = cont;
+                            return true;
+                        }
+                        cont++;
+                    }
+                }
+                //Derecha
+                if (d == 6) {
+                    for (int i = (x + 1); i < mov; i++) {
+
+                        if (tablero[y][i] instanceof EspacioMontana) {
+                            obstaculo = cont;
+                            return true;
+
+                        }
+                        cont++;
+
+                    }
+                }
+
+            }
+        obstaculo++;
+        return false;
     }
 }
 
